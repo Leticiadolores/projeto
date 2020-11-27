@@ -1,0 +1,58 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+def espacofinal(s0,v,t,t0=0):
+  '''Calcula o espaço para um instante qualquer t
+   Uso: (s0,v,t,t0=0)
+
+   Entrada:
+   -S0 (float, obrigatório): é o espaço para o instante inicial t0
+   -V (float, obrigatório): é a velocidade escalar instantânea e diferente de zero
+   -T0(opcional, padrão: 0): instante inicial 
+
+   '''
+  s=s0+v*(t-t0)
+  return s
+
+def tempo(s0,s,v,t0=0):
+  '''Calcula o espaço para um instante qualquer t
+   Uso: (s0,v,t,t0=0)
+
+   Entrada:
+   -S0 (float, obrigatório): é o espaço para o instante inicial t0
+   -S (float, obrigatório): é o espaço para o instante final
+   -T0(opcional, padrão: 0): instante inicial 
+
+   '''
+  t=(s-s0)/v+t0
+  return t
+
+#interação com o úsuário:
+
+#aqui teria que ter um menu suspenso para perguntar o que ele quer calular
+
+
+def escolha(escolha):
+  if escolha == 's':
+    x=float(input('Qual é a velocidade?'))
+    y=float(input('Qual o tempo?'))
+    z=float(input('Qual o espaço para o intante inicial t0?'))
+    w=float(input('Qual é intante inicial t0?'))
+    print(f'O espaço para o instante final é {espacofinal(x,y,z,w)}')
+    
+    xtempo=np.linspace(0,y)
+    yespaço=np.linspace(0,espacofinal(x,y,z,w))
+    plt.figure()
+    plt.plot(xtempo, yespaço, label='Espaço x tempo')
+
+  elif escolha =='t':
+    x=float(input('Qual o espaço para o intante inicial t0?'))
+    y=float(input('Qual o espaço para o intante final?'))
+    z=float(input('Qual a velocidade?'))
+    w=float(input('Qual é intante inicial t0?'))
+    print(f'O tempo é {tempo(x,y,z,w)}')
+
+    xtempo=np.linspace(0,tempo(x,y,z,w))
+    yespaço=np.linspace(0,y)
+    plt.figure()
+    plt.plot(xtempo, yespaço, label='Espaço x tempo')
